@@ -1,17 +1,25 @@
 import React from "react";
-//import Icons
+//Import Icons
 import clock from "../img/clock.svg";
 import diaphragm from "../img/diaphragm.svg";
 import money from "../img/money.svg";
 import teamwork from "../img/teamwork.svg";
 import home2 from "../img/home2.png";
-//Import Styles
-import styled from "styled-components";
+//Styles
 import { About, Description, Image } from "../styles";
+import styled from "styled-components";
+import { scrollReveal } from "../animation";
+import { useScroll } from "./useScroll";
 
 const ServicesSection = () => {
+  const [element, controls] = useScroll();
   return (
-    <Services>
+    <Services
+      variants={scrollReveal}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+    >
       <Description>
         <h2>
           High <span>quality</span> services
@@ -19,28 +27,28 @@ const ServicesSection = () => {
         <Cards>
           <Card>
             <div className="icon">
-              <img src={clock} alt="clock icon" />
+              <img alt="icon" src={clock} />
               <h3>Efficient</h3>
             </div>
             <p>Lorem ipsum dolor sit amet.</p>
           </Card>
           <Card>
             <div className="icon">
-              <img src={teamwork} alt="ppl icon" />
+              <img alt="icon" src={teamwork} />
               <h3>Teamwork</h3>
             </div>
             <p>Lorem ipsum dolor sit amet.</p>
           </Card>
           <Card>
             <div className="icon">
-              <img src={diaphragm} alt="diaphragm icon" />
+              <img alt="icon" src={diaphragm} />
               <h3>Diaphragm</h3>
             </div>
             <p>Lorem ipsum dolor sit amet.</p>
           </Card>
           <Card>
             <div className="icon">
-              <img src={money} alt="money icon" />
+              <img alt="icon" src={money} />
               <h3>Affordable</h3>
             </div>
             <p>Lorem ipsum dolor sit amet.</p>
@@ -48,7 +56,7 @@ const ServicesSection = () => {
         </Cards>
       </Description>
       <Image>
-        <img src={home2} alt="camera" />
+        <img alt="camera" src={home2} />
       </Image>
     </Services>
   );
@@ -66,6 +74,9 @@ const Services = styled(About)`
 const Cards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media (max-width: 1300px) {
+    justify-content: center;
+  }
 `;
 const Card = styled.div`
   flex-basis: 20rem;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-//Import Style
 import styled from "styled-components";
-//Router
 import { useHistory } from "react-router-dom";
 import { MovieState } from "../movieState";
+//Animations
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animation";
 
@@ -17,20 +16,22 @@ const MovieDetail = () => {
   useEffect(() => {
     const currentMovie = movies.filter((stateMovie) => stateMovie.url === url);
     setMovie(currentMovie[0]);
+    console.log(setMovies);
   }, [movies, url]);
+
   return (
     <>
       {movie && (
         <Details
+          exit="exit"
           variants={pageAnimation}
           initial="hidden"
           animate="show"
-          exit="exit"
         >
-          <Headline>
+          <HeadLine>
             <h2>{movie.title}</h2>
             <img src={movie.mainImg} alt="movie" />
-          </Headline>
+          </HeadLine>
           <Awards>
             {movie.awards.map((award) => (
               <Award
@@ -41,7 +42,7 @@ const MovieDetail = () => {
             ))}
           </Awards>
           <ImageDisplay>
-            <img src={movie.secondaryImg} alt="" />
+            <img src={movie.secondaryImg} alt="movie" />
           </ImageDisplay>
         </Details>
       )}
@@ -52,7 +53,7 @@ const MovieDetail = () => {
 const Details = styled(motion.div)`
   color: white;
 `;
-const Headline = styled.div`
+const HeadLine = styled.div`
   min-height: 90vh;
   padding-top: 20vh;
   position: relative;
@@ -74,8 +75,11 @@ const Awards = styled.div`
   margin: 5rem 10rem;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 1500px) {
+    display: block;
+    margin: 2rem 2rem;
+  }
 `;
-
 const AwardStyle = styled.div`
   padding: 5rem;
   h3 {
