@@ -23,7 +23,7 @@ const OurWork = () => {
   const [element2, controls2] = useScroll();
   return (
     <Work
-      style={{ background: "#fff" }}
+      style={{ background: "#1b1b1b" }}
       exit="exit"
       variants={pageAnimation}
       initial="hidden"
@@ -36,20 +36,12 @@ const OurWork = () => {
         <Frame4 variants={slider}></Frame4>
       </motion.div>
       <Movie>
-        <motion.h2 variants={fade}>The Athlete</motion.h2>
+        <motion.h2>The Athlete</motion.h2>
         <motion.div variants={lineAnim} className="line"></motion.div>
         <Link to="/work/the-athlete">
           <Hide>
             <motion.img variants={photoAnim} src={athlete} alt="athlete" />
           </Hide>
-        </Link>
-      </Movie>
-
-      <Movie ref={element} variants={fade} animate={controls} initial="hidden">
-        <h2>The Racer</h2>
-        <motion.div variants={lineAnim} className="line"></motion.div>
-        <Link to="/work/the-athlete">
-          <img src={athlete} variants={photoAnim} alt="theracer" />
         </Link>
       </Movie>
 
